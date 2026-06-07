@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع قارن | لأرخص رحلات الطيران 2026</title>
+    <style>
+        :root {
+            --primary-color: #0f172a; /* لون كحلي فاخر */
+            --accent-color: #2563eb;  /* أزرق مودرن */
+            --success-color: #16a34a; /* أخضر للحجز */
+            --bg-color: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: #334155;
+        }
+
+        /* الهيدر (شريط العنوان) */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* الحاوية الرئيسية */
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* صندوق البحث */
+        .search-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-search {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-search:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* قسم عروض النتائج */
+        .results-section {
+            margin-top: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .results-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+
+        /* كروت الشركات */
+        .flight-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        .airline-info strong {
+            font-size: 16px;
+            color: #0f172a;
+            display: block;
+        }
+
+        .airline-info span {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .btn-book {
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-book:hover {
+            opacity: 0.9;
+        }
+
+        /* ألوان هوية الشركات */
+        .adeal-color { background-color: #512da8; } /* بنفسجي طيران أديل */
+        .nas-color { background-color: #ffb300; color: #0f172a !important; } /* أصفر طيران ناس */
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر باسم موقعك الجديد -->
+    <header>
+        <h1>قـارن | Qaren</h1>
+        <p>محرك البحث الذكي والمباشر لرحلات طيران 2026</p>
+    </header>
+
+    <div class="container">
+        <!-- فورم البحث الرئيسي -->
+        <div class="search-card">
+            <form id="searchForm">
+                <div class="form-group">
+                    <label>محطة المغادرة (من):</label>
+                    <select id="fromCity">
+                        <option value="RUH">الرياض - مطار الملك خالد (RUH)</option>
+                        <option value="JED">جدة - مطار الملك عبد العزيز (JED)</option>
+                        <option value="CAI">القاهرة - مطار القاهرة الدولي (CAI)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>وجهة الوصول (إلى):</label>
+                    <select id="toCity">
+                        <option value="JED">جدة - مطار الملك عبد العزيز (JED)</option>
+                        <option value="RUH">الرياض - مطار الملك خالد (RUH)</option>
+                        <option value="CAI">القاهرة - مطار القاهرة الدولي (CAI)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>تاريخ السفر (تحديث يومي تلقائي):</label>
+                    <input type="date" id="flightDate">
+                </div>
+
+                <button type="button" class="btn-search" onclick="processQarenSearch()">ابحث وقارن الأسعار الحالية</button>
+            </form>
+        </div>
+
+        <!-- قسم ظهور نتايج عروض الطيران والـ Deep Links -->
+        <div id="resultsSec" class="results-section">
+            <div class="results-title">أحدث الرحلات المتاحة ليوم: <span id="targetDate" style="color: var(--accent-color);"></span></div>
+            
+            <!-- كارت طيران أديل -->
+            <div class="flight-card">
+                <div class="airline-info">
+                    <strong>طيران أديل (Flyadeal)</strong>
+                    <span>توفير تعبئة البيانات والانتقال المباشر للدفع بأمان</span>
+                </div>
+                <a id="adealBtn" href="#" target="_blank" class="btn-book adeal-color">احجز الآن</a>
+            </div>
+
+            <!-- كارت طيران ناس -->
+            <div class="flight-card">
+                <div class="airline-info">
+                    <strong>طيران ناس (Flynas)</strong>
+                    <span>توفير تعبئة البيانات والانتقال المباشر للدفع بأمان</span>
+                </div>
+                <a id="nasBtn" href="#" target="_blank" class="btn-book nas-color">احجز الآن</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // التحديث التلقائي اليومي لعام 2026 أول ما الصفحة تفتح
+        document.addEventListener("DOMContentLoaded", function() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            let mm = today.getMonth() + 1; 
+            let dd = today.getDate();
+
+            if (mm < 10) mm = '0' + mm;
+            if (dd < 10) dd = '0' + dd;
+
+            const systemToday = `${yyyy}-${mm}-${dd}`;
+            
+            const dateInput = document.getElementById('flightDate');
+            dateInput.value = systemToday; // يفرش تاريخ انهارده تلقائي
+            dateInput.min = systemToday;   // يمنع حجز أي يوم فات
+        });
+
+        // دالة تشغيل محرك بحث موقع "قارن"
+        function processQarenSearch() {
+            const from = document.getElementById('fromCity').value;
+            const to = document.getElementById('toCity').value;
+            const date = document.getElementById('flightDate').value;
+
+            if (from === to) {
+                alert("يا معلم ما ينفعش تختار نفس مطار المغادرة والوصول! اضبط الرحلة.");
+                return;
+            }
+
+            // لو اشتركت في شبكة عمولة طيران (زي ما شرحت لك فوق)، حط الـ ID بتاعك هنا مكان الـ XXXXX
+            const affiliateID = "XXXXX"; 
+
+            // صياغة الروابط العميقة (Deep Links) للشركات عشان تفتح ببيانات العميل جاهزة
+            const adealURL = `https://www.flyadeal.com/ar/booking/select?origin=${from}&destination=${to}&departureDate=${date}&adt=1&chd=0&inf=0&utm_source=qaren`;
+            const nasURL = `https://www.flynas.com/ar/booking/flight-search?origin=${from}&destination=${to}&departure=${date}&adults=1&utm_source=qaren`;
+
+            // ربط الروابط بالأزرار
+            document.getElementById('adealBtn').href = adealURL;
+            document.getElementById('nasBtn').href = nasURL;
+
+            // عرض النتايج وتحديث التاريخ في الواجهة
+            document.getElementById('targetDate').innerText = date;
+            document.getElementById('resultsSec').style.display = 'block';
+            
+            // سكرول ناعم ينزل للنتائج
+            document.getElementById('resultsSec').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
