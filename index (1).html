@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة قارن | وجهتك الأولى لمقارنة أسعار السفر</title>
+    <style>
+        :root {
+            --primary-green: #039855; /* اللون الأخضر الزاهي المميز من لقطة الشاشة */
+            --primary-hover: #027a44;
+            --bg-light: #f9fafb;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #d1d5db;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+        }
+
+        /* تصميم الهيدر الأخضر العريض تماماً مثل الصورة */
+        header {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 30px 20px;
+            text-align: right;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .header-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: -20px auto 40px auto; /* تداخل خفيف يعطي مظهر عصري */
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* صندوق البحث الرئيسي الأبيض */
+        .search-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid #edf2f7;
+        }
+
+        /* تصميم وجهات شائعة (الرقاقات / Chips) */
+        .popular-section {
+            margin-bottom: 25px;
+        }
+
+        .popular-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .chips-container {
+            display: block;
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #f3f4f6;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: 8px;
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .chip:hover {
+            background-color: #e5e7eb;
+            border-color: #9ca3af;
+        }
+
+        /* أزرار التبويب (ذهاب وعودة / ذهاب فقط) */
+        .trip-tabs {
+            display: table;
+            width: 100%;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .tab-item {
+            display: table-cell;
+            text-align: center;
+            padding: 12px 0;
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--text-muted);
+            cursor: pointer;
+            width: 50%;
+            transition: all 0.2s;
+        }
+
+        .tab-item.active {
+            color: var(--primary-green);
+            border-bottom: 3px solid var(--primary-green);
+        }
+
+        /* المجموعات والحقول */
+        .form-grid {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        select, input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: #fff;
+            box-sizing: border-box;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(3, 152, 85, 0.1);
+        }
+
+        /* قسم الركاب العداد بمظهر الموبايل الأنيق */
+        .passenger-container {
+            display: table;
+            width: 100%;
+            background: #f9fafb;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+        }
+
+        .passenger-label {
+            display: table-cell;
+            vertical-align: middle;
+            font-weight: 600;
+        }
+
+        .counter-controls {
+            display: table-cell;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .btn-counter {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            line-height: 30px;
+            user-select: none;
+        }
+
+        .btn-counter:box {
+            background: #f3f4f6;
+        }
+
+        .counter-value {
+            display: inline-block;
+            width: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* زر البحث الرئيسي العريض */
+        .btn-search {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(3, 152, 85, 0.2);
+            transition: background 0.2s;
+        }
+
+        .btn-search:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* قسم عروض النتائج والبطاقات الديناميكية */
+        .results-section {
+            margin-top: 30px;
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .results-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            border-right: 4px solid var(--primary-green);
+            padding-right: 8px;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .provider-info strong {
+            font-size: 16px;
+            color: var(--text-main);
+            display: block;
+        }
+
+        .provider-info span {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            display: block;
+        }
+
+        .btn-go-book {
+            padding: 10px 22px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-go-book:hover {
+            opacity: 0.9;
+        }
+
+        .adeal-btn { background-color: #512da8; }
+        .nas-btn { background-color: #ffb300; color: #1f2937 !important; }
+        .hotel-btn { background-color: var(--primary-green); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- هيدر منصة قارن المماثل لـ Replit -->
+    <header>
+        <div class="header-container">
+            <div>
+                <h1>منصة قارن 🛠️</h1>
+                <p>وجهتك الأولى لمقارنة أسعار السفر في المملكة ومصر</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- كارت البحث الشامل والمنظم بنفس حقول الصورة -->
+        <div class="search-card">
+            
+            <!-- الوجهات الشائعة السريعة مثل واجهة Replit -->
+            <div class="popular-section">
+                <div class="popular-title">وجهات شائعة</div>
+                <div class="chips-container">
+                    <span class="chip" onclick="quickSelectDestination('RUH')">📍 الرياض</span>
+                    <span class="chip" onclick="quickSelectDestination('JED')">📍 جدة</span>
+                    <span class="chip" onclick="quickSelectDestination('Makkah')">🕋 مكة المكرمة</span>
+                    <span class="chip" onclick="quickSelectDestination('MED')">📍 المدينة المنورة</span>
+                </div>
+            </div>
+
+            <!-- تبويبات نوع الرحلة -->
+            <div class="trip-tabs">
+                <div class="tab-item active" id="tabRoundTrip" onclick="setTripType('round')">ذهاب وعودة</div>
+                <div class="tab-item" id="tabOneWay" onclick="setTripType('one-way')">ذهاب فقط</div>
+            </div>
+
+            <!-- مدخلات البحث ومطارات السعودية ومصر -->
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>من أين تسافر؟ (مدينة المغادرة)</label>
+                    <select id="fromCity">
+                        <optgroup label="جمهورية مصر العربية">
+                            <option value="CAI" selected>القاهرة - مطار القاهرة الدولي (CAI)</option>
+                            <option value="HBE">الإسكندرية - مطار برج العرب الدولي (HBE)</option>
+                            <option value="SSH">شرم الشيخ - مطار شرم الشيخ الدولي (SSH)</option>
+                            <option value="HRG">الغردقة - مطار الغردقة الدولي (HRG)</option>
+                            <option value="LXR">الأقصر - مطار الأقصر الدولي (LXR)</option>
+                            <option value="ASW">أسوان - مطار أسوان الدولي (ASW)</option>
+                            <option value="SOH">سوهاج - مطار سوهاج الدولي (SOH)</option>
+                            <option value="ATZ">أسيوط - مطار أسيوط الدولي (ATZ)</option>
+                        </optgroup>
+                        <optgroup label="المملكة العربية السعودية">
+                            <option value="RUH">الرياض - مطار الملك خالد الدولي (RUH)</option>
+                            <option value="JED">جدة - مطار الملك عبدالعزيز الدولي (JED)</option>
+                            <option value="DMM">الدمام - مطار الملك فهد الدولي (DMM)</option>
+                            <option value="MED">المدينة المنورة - مطار الأمير محمد بن عبدالعزيز (MED)</option>
+                            <option value="AHB">أبها - مطار أبها الدولي (AHB)</option>
+                            <option value="TAIF">الطائف - مطار الطائف الدولي (TAIF)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>الوجهة (إلى)</label>
+                    <select id="toCity">
+                        <optgroup label="المملكة العربية السعودية">
+                            <option value="JED" selected>جدة - مطار الملك عبدالعزيز الدولي (JED)</option>
+                            <option value="RUH">الرياض - مطار الملك خالد الدولي (RUH)</option>
+                            <option value="DMM">الدمام - مطار الملك فهد الدولي (DMM)</option>
+                            <option value="MED">المدينة المنورة - مطار الأمير محمد بن عبدالعزيز (MED)</option>
+                            <option value="AHB">أبها - مطار أبها الدولي (AHB)</option>
+                            <option value="TAIF">الطائف - مطار الطائف الدولي (TAIF)</option>
+                        </optgroup>
+                        <optgroup label="جمهورية مصر العربية">
+                            <option value="CAI">القاهرة - مطار القاهرة الدولي (CAI)</option>
+                            <option value="HBE">الإسكندرية - مطار برج العرب الدولي (HBE)</option>
+                            <option value="SSH">شرم الشيخ - مطار شرم الشيخ الدولي (SSH)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>تاريخ المغادرة</label>
+                    <input type="date" id="departureDate">
+                </div>
+
+                <div class="form-group" id="returnDateGroup">
+                    <label>تاريخ العودة</label>
+                    <input type="date" id="returnDate">
+                </div>
+
+                <!-- حقل الفندق المفضل الإضافي كما في شاشة ريبليت -->
+                <div class="form-group">
+                    <label>الفندق المفضل (اختياري)</label>
+                    <select id="hotelSelect">
+                        <option value="none">-- اختر فندقاً للمقارنة أو التخطي --</option>
+                        <optgroup label="أفخم فنادق المملكة العربية السعودية">
+                            <option value="Makkah-Clock-Tower">فندق ساعة مكة المكرمة (Fairmont)</option>
+                            <option value="Anwar-Al-Madinah">فندق أنوار المدينة موڤنبيك</option>
+                            <option value="Nujuma-Ritz-Carlton">منتجع نجومة - ريتز كارلتون (البحر الأحمر)</option>
+                            <option value="Radisson-Blu-Khobar">منتجع راديسون بلو الخبر (شاطئ نصف القمر)</option>
+                            <option value="Nofa-Resort-Riyadh">منتجع نوفا الرياض - راديسون كوليكشن</option>
+                        </optgroup>
+                        <optgroup label="أفخم فنادق جمهورية مصر العربية">
+                            <option value="Rixos-Premium-Alamein">ريكسوس بريميوم العلمين (الساحل الشمالي)</option>
+                            <option value="Rixos-Sharm-El-Sheikh">منتجع ريكسوس شرم الشيخ</option>
+                            <option value="Four-Seasons-Alexandria">فندق فور سيزونز الإسكندرية (سان ستيفانو)</option>
+                            <option value="Meraki-Resort-Hurghada">منتجع ميراكي الغردقة (Meraki Resort)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- عداد المسافرين المماثل للموجود بالصورة تماماً -->
+                <div class="form-group">
+                    <label>عدد المسافرين</label>
+                    <div class="passenger-container">
+                        <div class="passenger-label">بالغ (12+ سنة)</div>
+                        <div class="counter-controls">
+                            <span class="btn-counter" onclick="updatePassengers(-1)">-</span>
+                            <span class="counter-value" id="passengerCount">1</span>
+                            <span class="btn-counter" onclick="updatePassengers(1)">+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-search" onclick="executeQarenMegaSearch()">ابحث وقارن الأسعار 🔍</button>
+            </div>
+        </div>
+
+        <!-- قسم عرض نتائج البحث الحية والديناميكية التمريرية Deep Links -->
+        <div id="qarenResultsBlock" class="results-section">
+            <div class="results-title" id="resultsMainTitle">الرحلات المتوفرة والعروض المباشرة:</div>
+            
+            <!-- عروض الطيران -->
+            <div class="result-card" id="adealCard">
+                <div class="provider-info">
+                    <strong>طيران أديل (Flyadeal)</strong>
+                    <span id="adealDetails">رحلة مباشرة ببياناتك الجاهزة بالكامل</span>
+                </div>
+                <a id="adealLinkUrl" href="#" target="_blank" class="btn-go-book adeal-btn">احجز الآن</a>
+            </div>
+
+            <div class="result-card" id="nasCard">
+                <div class="provider-info">
+                    <strong>طيران ناس (Flynas)</strong>
+                    <span id="nasDetails">أفضل عروض الطيران الاقتصادي ممررة لصفحة الدفع</span>
+                </div>
+                <a id="nasLinkUrl" href="#" target="_blank" class="btn-go-book nas-btn">احجز الآن</a>
+            </div>
+
+            <!-- عرض كارت الفندق الديناميكي إن وُجد اختيار -->
+            <div class="result-card" id="hotelCardResult" style="display: none;">
+                <div class="provider-info">
+                    <strong id="chosenHotelTitle">اسم الفندق المحدد</strong>
+                    <span>أفضل الأسعار المتاحة للغرف الفاخرة بناءً على تاريخ وصولك</span>
+                </div>
+                <a id="hotelLinkUrl" href="#" target="_blank" class="btn-go-book hotel-btn">احجز الفندق الآن</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentTripType = 'round';
+        let passengerAmount = 1;
+
+        // إعداد التاريخ التلقائي لعام 2026 عند التشغيل الفوري للموقع
+        document.addEventListener("DOMContentLoaded", function() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            let mm = today.getMonth() + 1; 
+            let dd = today.getDate();
+
+            if (mm < 10) mm = '0' + mm;
+            if (dd < 10) dd = '0' + dd;
+
+            const systemToday = `${yyyy}-${mm}-${dd}`;
+            
+            // تعيين التاريخ تلقائياً لمنع التواريخ الفائتة
+            document.getElementById('departureDate').value = systemToday;
+            document.getElementById('departureDate').min = systemToday;
+            document.getElementById('returnDate').value = systemToday;
+            document.getElementById('returnDate').min = systemToday;
+        });
+
+        // تغيير نوع الرحلة (ذهاب وعودة / ذهاب فقط)
+        function setTripType(type) {
+            currentTripType = type;
+            const tabRound = document.getElementById('tabRoundTrip');
+            const tabOneWay = document.getElementById('tabOneWay');
+            const returnGroup = document.getElementById('returnDateGroup');
+
+            if (type === 'round') {
+                tabRound.classList.add('active');
+                tabOneWay.classList.remove('active');
+                returnGroup.style.display = 'block';
+            } else {
+                tabOneWay.classList.add('active');
+                tabRound.classList.remove('active');
+                returnGroup.style.display = 'none';
+            }
+        }
+
+        // اختيار سريع للوجهات من الـ Chips المتواجدة بأعلى الفارم
+        function quickSelectDestination(code) {
+            const toSelect = document.getElementById('toCity');
+            if(code === 'Makkah') {
+                // مكة المكرمة تستخدم مطار جدة كأقرب محطة سفر
+                toSelect.value = 'JED';
+            } else {
+                toSelect.value = code;
+            }
+        }
+
+        // التحكم في عداد الركاب (+ / -)
+        function updatePassengers(amount) {
+            passengerAmount += amount;
+            if (passengerAmount < 1) passengerAmount = 1;
+            if (passengerAmount > 9) passengerAmount = 9; // حد أقصى للحجز الفردي القياسي
+            document.getElementById('passengerCount').innerText = passengerAmount;
+        }
+
+        // الدالة السحرية للربط العميق (Deep Linking) وتمرير المعطيات
+        function executeQarenMegaSearch() {
+            const from = document.getElementById('fromCity').value;
+            const to = document.getElementById('toCity').value;
+            const depDate = document.getElementById('departureDate').value;
+            const retDate = document.getElementById('returnDate').value;
+            const hotelVal = document.getElementById('hotelSelect').value;
+            const hotelText = document.getElementById('hotelSelect').options[document.getElementById('hotelSelect').selectedIndex].text;
+
+            if (from === to) {
+                alert("يا معلم، لا يمكن أن تكون مدينة المغادرة هي نفسها وجهة الوصول. يرجى ضبط المطارات!");
+                return;
+            }
+
+            // صياغة الروابط الذكية ممرر بها المطارات والتواريخ وعدد الركاب تلقائياً
+            const adealDeepLink = `https://www.flyadeal.com/ar/booking/select?origin=${from}&destination=${to}&departureDate=${depDate}&adt=${passengerAmount}&chd=0&inf=0&utm_source=qaren`;
+            const nasDeepLink = `https://www.flynas.com/ar/booking/flight-search?origin=${from}&destination=${to}&departure=${depDate}&adults=${passengerAmount}&utm_source=qaren`;
+
+            // تحديث الأزرار بالروابط الجديدة الحية
+            document.getElementById('adealLinkUrl').href = adealDeepLink;
+            document.getElementById('nasLinkUrl').href = nasDeepLink;
+            
+            document.getElementById('adealDetails').innerText = `رحلة من (${from}) إلى (${to}) لعدد ${passengerAmount} مسافر(ين) بتاريخ ${depDate}`;
+            document.getElementById('nasDetails').innerText = `طيران اقتصادي مباشر من (${from}) إلى (${to}) لعدد ${passengerAmount} مسافر(ين)`;
+
+            // التحقق من حجز الفندق المفضل وتجهيز الرابط
+            const hotelCard = document.getElementById('hotelCardResult');
+            if(hotelVal !== "none") {
+                let hotelSearchUrl = "https://www.google.com/travel/search";
+                
+                if(hotelVal === "Makkah-Clock-Tower") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%81%D9%86%D8%AF%D9%82+%D8%B3%D8%A7%D8%B9%D9%87+%D9%85%D9%83%D9%87+%D8%A7%D9%84%D9%85%D9%83%D8%B1%D9%85%D9%8e";
+                else if(hotelVal === "Anwar-Al-Madinah") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%81%D9%86%D8%AF%D9%82+%D8%A3%D9%86%D9%88%D8%A7%D8%B1+%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9+%D9%85%D9%88%DA%A4%D9%86%D8%A8%D9%8A%D9%83";
+                else if(hotelVal === "Nujuma-Ritz-Carlton") hotelSearchUrl = "https://www.google.com/travel/search?q=Nujuma,+a+Ritz-Carlton+Reserve";
+                else if(hotelVal === "Radisson-Blu-Khobar") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%85%D9%86%D8%AA%D8%AC%D8%B9+%D8%AF%D8%A7%D8%AF%D9%8A%D8%B3%D9%85%D9%86+%D8%A8%D9%84%D9%88+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1";
+                else if(hotelVal === "Nofa-Resort-Riyadh") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%85%D9%86%D8%AA%D8%AC%D8%B9+%D9%86%D9%88%D9%81%D8%A7+%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6";
+                else if(hotelVal === "Rixos-Premium-Alamein") hotelSearchUrl = "https://www.google.com/travel/search?q=Rixos+Premium+Alamein";
+                else if(hotelVal === "Rixos-Sharm-El-Sheikh") hotelSearchUrl = "https://www.google.com/travel/search?q=.%D8%B1%D9%8A%D9%83%D8%B3%D9%88%D8%B3+%D8%B4%D8%B1%D9%85+%D8%A7%D9%84%D8%B4%D9%8A%D8%AE";
+                else if(hotelVal === "Four-Seasons-Alexandria") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%81%D9%86%D8%AF%D9%82+%D9%81%D9%88%D8%B1+%D8%B3%D9%8A%D8%B2%D9%88%D9%86%D8%B2+%D8%A7%D9%84%D8%A5%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A%D8%A9";
+                else if(hotelVal === "Meraki-Resort-Hurghada") hotelSearchUrl = "https://www.google.com/travel/search?q=Meraki+Resort";
+
+                document.getElementById('chosenHotelTitle').innerText = hotelText;
+                document.getElementById('hotelLinkUrl').href = hotelSearchUrl;
+                hotelCard.style.display = 'flex';
+            } else {
+                hotelCard.style.display = 'none';
+            }
+
+            // إظهار النتائج وعمل سكرول ناعم مريح للعميل
+            document.getElementById('qarenResultsBlock').style.display = 'block';
+            document.getElementById('qarenResultsBlock').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
