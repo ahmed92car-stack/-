@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>قارن | Qaren - وجهتك الأولى لمقارنة أسعار السفر</title>
+    <title>قارن | Qaren - وجهتك الأولى لمقارنة أسعار السفر</title>
     <style>
-        :root 
+        :root {
+            --primary-green: #039855; 
+            --primary-hover: #027a44;
+            --bg-light: #f9fafb;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #d1d5db;
+            --card-bg: #ffffff;
+            --chip-bg: #f3f4f6;
+            --glow-color: rgba(37, 99, 235, 0.4);
+            --price-color: #b45309;
+            --accent-blue: #2563eb;
+        }
 
         .dark-mode {
             --bg-light: #0f172a;
@@ -64,7 +76,6 @@
             align-items: center;
         }
 
-        /* تصميم شعار قارن المخصص المحتوي على حرف R بداخل دائرة أنيقة */
         .brand-block {
             display: flex;
             align-items: center;
@@ -98,7 +109,7 @@
 
         header h1 {
             margin: 0;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
         }
 
@@ -129,20 +140,33 @@
         }
 
         .container {
-            max-width: 650px;
+            max-width: 680px;
             margin: -20px auto 40px auto;
             padding: 0 20px;
             position: relative;
             z-index: 10;
         }
 
-        .search-card {
+        .search-card, .addon-card {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
             border: 1px solid var(--border-color);
             transition: background-color 0.3s, border-color 0.3s;
+            margin-bottom: 25px;
+        }
+
+        .addon-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            border-right: 4px solid var(--accent-blue);
+            padding-right: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .popular-section {
@@ -178,7 +202,7 @@
 
         .chip:hover {
             box-shadow: 0 0 8px var(--glow-color);
-            border-color: #2563eb;
+            border-color: var(--accent-blue);
         }
 
         .trip-tabs {
@@ -218,7 +242,7 @@
             color: var(--text-main);
         }
 
-        select, input[type="text"], input[type="date"] {
+        select, input[type="text"], input[type="date"], input[type="email"] {
             width: 100%;
             padding: 12px 16px;
             border: 1px solid var(--border-color);
@@ -232,8 +256,8 @@
 
         select:focus, input:focus {
             outline: none;
-            border-color: #2563eb !important;
-            box-shadow: 0 0 12px #2563eb !important;
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 12px var(--accent-blue) !important;
         }
 
         .passenger-container {
@@ -299,8 +323,20 @@
         }
 
         .btn-search:active {
-            box-shadow: 0 0 15px #2563eb;
+            box-shadow: 0 0 15px var(--accent-blue);
             transform: scale(0.99);
+        }
+
+        /* نصيحة حجز ذكية */
+        .smart-advice {
+            background: rgba(37, 99, 235, 0.08);
+            border-right: 4px solid var(--accent-blue);
+            padding: 12px;
+            border-radius: 4px 8px 8px 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+            font-weight: 500;
         }
 
         .results-section {
@@ -324,11 +360,15 @@
             padding: 20px;
             margin-bottom: 15px;
             border: 1px solid var(--border-color);
+            display: block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .card-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .provider-info strong {
@@ -344,7 +384,6 @@
             display: block;
         }
 
-        /* ستايل عرض السعر الحسابي المكتشف حديثاً بناءً على طلبك */
         .price-badge {
             font-size: 18px;
             font-weight: bold;
@@ -354,6 +393,12 @@
             border-radius: 6px;
             margin-top: 5px;
             display: inline-block;
+        }
+
+        .actions-flex {
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         .btn-go-book {
@@ -370,6 +415,70 @@
         .nas-btn { background-color: #ffb300; color: #1f2937 !important; }
         .hotel-btn { background-color: var(--primary-green); }
 
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+        }
+
+        /* حاسبة الشنط التفاعلية */
+        .luggage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .luggage-box {
+            background: var(--chip-bg);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+        }
+        .luggage-box strong {
+            color: var(--primary-green);
+            display: block;
+            font-size: 16px;
+            margin-top: 4px;
+        }
+
+        /* منبه الأسعار السريع */
+        .alert-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn-alert {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* جايد محلي خفيف */
+        .guide-container {
+            display: none;
+            margin-top: 15px;
+            background: rgba(16, 185, 129, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed var(--primary-green);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
@@ -383,10 +492,9 @@
     <header>
         <div class="header-container">
             <div class="brand-block">
-                <!-- لوجو قارن المطور: دائرة بيضاء بداخلها حرف R أنيق وتتحرك عند التمرير -->
                 <div class="qaren-logo">R</div>
                 <div>
-                    <h1>منصة قارن 🛠️</h1>
+                    <h1>قارن | Qaren 🛠️</h1>
                     <p>وجهتك الأولى لمقارنة أسعار السفر في المملكة ومصر</p>
                 </div>
             </div>
@@ -397,6 +505,7 @@
     </header>
 
     <div class="container">
+        <!-- كارت البحث الرئيسي -->
         <div class="search-card">
             
             <div class="popular-section">
@@ -423,44 +532,37 @@
                             <option value="HBE">الإسكندرية - مطار برج العرب الدولي (HBE)</option>
                             <option value="SSH">شرم الشيخ - مطار شرم الشيخ الدولي (SSH)</option>
                             <option value="HRG">الغردقة - مطار الغردقة الدولي (HRG)</option>
-                            <option value="LXR">الأقصر - مطار الأقصر الدولي (LXR)</option>
-                            <option value="ASW">أسوان - مطار أسوان الدولي (ASW)</option>
-                            <option value="SOH">سوهاج - مطار سوهاج الدولي (SOH)</option>
-                            <option value="ATZ">أسيوط - مطار أسيوط الدولي (ATZ)</option>
                         </optgroup>
                         <optgroup label="المملكة العربية السعودية">
                             <option value="RUH">الرياض - مطار الملك خالد الدولي (RUH)</option>
                             <option value="JED">جدة - مطار الملك عبدالعزيز الدولي (JED)</option>
                             <option value="DMM">الدمام - مطار الملك فهد الدولي (DMM)</option>
-                            <option value="MED">المدينة المنورة - مطار الأمير محمد بن عبدالعزيز (MED)</option>
-                            <option value="AHB">أبها - مطار أبها الدولي (AHB)</option>
-                            <option value="TAIF">الطائف - مطار الطائف الدولي (TAIF)</option>
                         </optgroup>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>الوجهة (إلى)</label>
-                    <select id="toCity">
+                    <select id="toCity" onchange="triggerDynamicAdvice()">
                         <optgroup label="المملكة العربية السعودية">
                             <option value="JED" selected>جدة - مطار الملك عبدالعزيز الدولي (JED)</option>
                             <option value="RUH">الرياض - مطار الملك خالد الدولي (RUH)</option>
                             <option value="DMM">الدمام - مطار الملك فهد الدولي (DMM)</option>
                             <option value="MED">المدينة المنورة - مطار الأمير محمد بن عبدالعزيز (MED)</option>
-                            <option value="AHB">أبها - مطار أبها الدولي (AHB)</option>
-                            <option value="TAIF">الطائف - مطار الطائف الدولي (TAIF)</option>
                         </optgroup>
                         <optgroup label="جمهورية مصر العربية">
                             <option value="CAI">القاهرة - مطار القاهرة الدولي (CAI)</option>
                             <option value="HBE">الإسكندرية - مطار برج العرب الدولي (HBE)</option>
-                            <option value="SSH">شرم الشيخ - مطار شرم الشيخ الدولي (SSH)</option>
                         </optgroup>
                     </select>
                 </div>
 
+                <!-- ميزة 2: شريط النصائح الذكية وأفضل وقت للحجز -->
+                <div class="smart-advice" id="adviceBanner"></div>
+
                 <div class="form-group">
                     <label>تاريخ المغادرة</label>
-                    <input type="date" id="departureDate">
+                    <input type="date" id="departureDate" onchange="triggerDynamicAdvice()">
                 </div>
 
                 <div class="form-group" id="returnDateGroup">
@@ -472,18 +574,13 @@
                     <label>الفندق المفضل (اختياري)</label>
                     <select id="hotelSelect">
                         <option value="none">-- اختر فندقاً للمقارنة أو التخطي --</option>
-                        <optgroup label="أفخم فنادق المملكة العربية السعودية">
+                        <optgroup label="أفخم فنادق المملكة">
                             <option value="Makkah-Clock-Tower">فندق ساعة مكة المكرمة (Fairmont)</option>
                             <option value="Anwar-Al-Madinah">فندق أنوار المدينة موڤنبيك</option>
-                            <option value="Nujuma-Ritz-Carlton">منتجع نجومة - ريتز كارلتون (البحر الأحمر)</option>
-                            <option value="Radisson-Blu-Khobar">منتجع راديسون بلو الخبر (شاطئ نصف القمر)</option>
-                            <option value="Nofa-Resort-Riyadh">منتجع نوفا الرياض - راديسون كوليكشن</option>
                         </optgroup>
-                        <optgroup label="أفخم فنادق جمهورية مصر العربية">
-                            <option value="Rixos-Premium-Alamein">ريكسوس بريميوم العلمين (الساحل الشمالي)</option>
+                        <optgroup label="أفخم فنادق مصر">
+                            <option value="Rixos-Premium-Alamein">ريكسوس بريميوم العلمين</option>
                             <option value="Rixos-Sharm-El-Sheikh">منتجع ريكسوس شرم الشيخ</option>
-                            <option value="Four-Seasons-Alexandria">فندق فور سيزونز الإسكندرية (سان ستيفانو)</option>
-                            <option value="Meraki-Resort-Hurghada">منتجع ميراكي الغردقة (Meraki Resort)</option>
                         </optgroup>
                     </select>
                 </div>
@@ -504,34 +601,88 @@
             </div>
         </div>
 
+        <!-- ميزة 1: حاسبة أوزان الشنط والأمتعة الذكية لمصر والسعودية -->
+        <div class="addon-card">
+            <div class="addon-title">🧳 حاسبة أمتعة الطيران الاقتصادي الجاهزة</div>
+            <div class="form-group">
+                <label>اختر شركة الطيران لمعرفة تفاصيل الأوزان والشنط:</label>
+                <select id="luggageProvider" onchange="calculateLuggageWeight()">
+                    <option value="adeal">طيران أديل (Flyadeal)</option>
+                    <option value="nas">طيران ناس (Flynas)</option>
+                </select>
+            </div>
+            <div class="luggage-grid">
+                <div class="luggage-box">
+                    حقيبة اليد المجانية (المقصورة)
+                    <strong id="handLuggage">7 كيلو جرام</strong>
+                </div>
+                <div class="luggage-box">
+                    الوزن المشحون (المسجل)
+                    <strong id="checkedLuggage">20 كيلو (درجة صعد)</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- ميزة 5: منبه انخفاض أسعار الطيران الافتراضي التفاعلي -->
+        <div class="addon-card">
+            <div class="addon-title">🔔 تفعيل منبه انخفاض الأسعار التلقائي</div>
+            <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--text-muted);">اكتب بريدك الإلكتروني وسيقوم النظام بتنبيهك فور نزول السعر لهذه الرحلة.</p>
+            <div class="alert-form">
+                <input type="email" id="alertEmail" placeholder="name@example.com">
+                <button type="button" class="btn-alert" onclick="activatePriceAlert()">فعل المنبه 🚀</button>
+            </div>
+        </div>
+
+        <!-- ميزة 4: دليل المعالم السياحية والأكلات المحلية الذكي للوجهة -->
+        <div class="guide-container" id="localGuideBlock">
+            <strong style="color: var(--primary-green); display:block; margin-bottom: 8px;">🗺️ المعالم والأكلات المقترحة لوجهتك الحالية:</strong>
+            <span id="guideText" style="font-size: 13px; line-height: 1.5;">جاري تجميع الدليل...</span>
+        </div>
+
+        <!-- قسم نتائج البحث المحدث والمحتوي على ميزة 3: المشاركة عبر الواتساب -->
         <div id="qarenResultsBlock" class="results-section">
             <div class="results-title" id="resultsMainTitle">الرحلات المتوفرة والعروض المباشرة الحالية:</div>
             
+            <!-- كارت أديل -->
             <div class="result-card" id="adealCard">
-                <div class="provider-info">
-                    <strong>طيران أديل (Flyadeal)</strong>
-                    <span id="adealDetails">رحلة مباشرة ببياناتك الجاهزة بالكامل</span>
-                    <!-- حقل عرض السعر التلقائي المحسوب -->
-                    <div class="price-badge" id="adealPrice">السعر: جاري الحساب...</div>
+                <div class="card-flex">
+                    <div class="provider-info">
+                        <strong>طيران أديل (Flyadeal)</strong>
+                        <span id="adealDetails">رحلة مباشرة ببياناتك الجاهزة بالكامل</span>
+                        <div class="price-badge" id="adealPrice">السعر: جاري الحساب...</div>
+                    </div>
+                    <div class="actions-flex">
+                        <a id="adealLinkUrl" href="#" target="_blank" class="btn-go-book adeal-btn">احجز الآن</a>
+                        <!-- ميزة 3: مشاركة التفاصيل عبر الواتساب بتعديل ديناميكي للرسالة -->
+                        <a id="adealWA" href="#" target="_blank" class="btn-whatsapp">🟢 واتساب</a>
+                    </div>
                 </div>
-                <a id="adealLinkUrl" href="#" target="_blank" class="btn-go-book adeal-btn">احجز الآن</a>
             </div>
 
+            <!-- كارت ناس -->
             <div class="result-card" id="nasCard">
-                <div class="provider-info">
-                    <strong>طيران ناس (Flynas)</strong>
-                    <span id="nasDetails">أفضل عروض الطيران الاقتصادي ممررة لصفحة الدفع</span>
-                    <div class="price-badge" id="nasPrice">السعر: جاري الحساب...</div>
+                <div class="card-flex">
+                    <div class="provider-info">
+                        <strong>طيران ناس (Flynas)</strong>
+                        <span id="nasDetails">أفضل عروض الطيران الاقتصادي ممررة لصفحة الدفع</span>
+                        <div class="price-badge" id="nasPrice">السعر: جاري الحساب...</div>
+                    </div>
+                    <div class="actions-flex">
+                        <a id="nasLinkUrl" href="#" target="_blank" class="btn-go-book nas-btn">احجز الآن</a>
+                        <a id="nasWA" href="#" target="_blank" class="btn-whatsapp">🟢 واتساب</a>
+                    </div>
                 </div>
-                <a id="nasLinkUrl" href="#" target="_blank" class="btn-go-book nas-btn">احجز الآن</a>
             </div>
 
+            <!-- كارت الفندق المخصص للنتائج الافتراضية المضافة -->
             <div class="result-card" id="hotelCardResult" style="display: none;">
-                <div class="provider-info">
-                    <strong id="chosenHotelTitle">اسم الفندق المحدد</strong>
-                    <span>أفضل الأسعار المتاحة للغرف الفاخرة بناءً على تاريخ وصولك</span>
+                <div class="card-flex">
+                    <div class="provider-info">
+                        <strong id="chosenHotelTitle">اسم الفندق المحدد</strong>
+                        <span>أفضل الأسعار المتاحة للغرف الفاخرة بناءً على تاريخ وصولك</span>
+                    </div>
+                    <a id="hotelLinkUrl" href="#" target="_blank" class="btn-go-book hotel-btn">احجز الفندق الآن</a>
                 </div>
-                <a id="hotelLinkUrl" href="#" target="_blank" class="btn-go-book hotel-btn">احجز الفندق الآن</a>
             </div>
         </div>
     </div>
@@ -540,26 +691,18 @@
         let currentTripType = 'round';
         let passengerAmount = 1;
 
-        // محرك ذكي لحساب أسعار تقريبية وديناميكية مخصصة للمطارات المحددة في مصر والسعودية
         function calculateMockPrice(from, to, provider) {
-            // أسعار أساسية تقريبية للرحلات بالريال السعودي أو ما يعادله
             let basePrice = 450; 
-            
-            // تعديل السعر بناءً على المسافة بين المطارات المحددة
             if ((from === 'CAI' || from === 'HBE') && (to === 'RUH' || to === 'JED')) {
-                basePrice = 750; // رحلة دولية مصر - السعودية
+                basePrice = 750; 
             } else if ((from === 'RUH' || from === 'JED') && (to === 'MED' || to === 'AHB')) {
-                basePrice = 280; // رحلة داخلية سعودية
+                basePrice = 280; 
             }
-            
-            // طيران أديل عادة أرخص قليلاً في بعض المسارات الافتراضية
             if (provider === 'adeal') {
                 basePrice = Math.round(basePrice * 0.95);
             } else {
                 basePrice = Math.round(basePrice * 1.02);
             }
-
-            // ضرب السعر في عدد الركاب المحدد من العداد
             return basePrice * passengerAmount;
         }
 
@@ -579,13 +722,7 @@
             document.getElementById('returnDate').value = systemToday;
             document.getElementById('returnDate').min = systemToday;
 
-            document.body.addEventListener('click', function(e) {
-                if(e.target.classList.contains('chip') || e.target.classList.contains('btn-search') || e.target.classList.contains('btn-counter')) {
-                    e.target.style.outline = "none";
-                    e.target.style.boxShadow = "0 0 15px #2563eb";
-                    setTimeout(() => { e.target.style.boxShadow = ""; }, 300);
-                }
-            });
+            triggerDynamicAdvice();
         });
 
         function toggleDarkMode() {
@@ -602,6 +739,47 @@
                 themeIcon.innerText = "☀️";
                 themeText.innerText = "الوضع المضيء";
             }
+        }
+
+        // ميزة 2: نصائح الحجز الحيوية والتحديث التلقائي
+        function triggerDynamicAdvice() {
+            const toCity = document.getElementById('toCity').value;
+            const dateVal = document.getElementById('departureDate').value;
+            const banner = document.getElementById('adviceBanner');
+            
+            if(!dateVal) return;
+            const month = parseInt(dateVal.split('-')[1]);
+            
+            banner.style.display = 'block';
+            if (month >= 6 && month <= 8) {
+                banner.innerText = "☀️ تنبيه موسم الذروة الصيفي: الأسعار تشهد ارتفاعاً مستمراً حالياً. ننصح بشراء التذاكر فوراً لتوفر مقاعد أفضل!";
+                banner.style.color = "#b45309";
+            } else {
+                banner.innerText = "🍂 توقيت ممتاز: أنت تحجز في فترة انخفاض موسمي للطلب، الأسعار مناسبة جداً ومثالية للتوفير اليوم.";
+                banner.style.color = "#039855";
+            }
+        }
+
+        // ميزة 1: حاسبة الشنط التفاعلية
+        function calculateLuggageWeight() {
+            const p = document.getElementById('luggageProvider').value;
+            if(p === 'adeal') {
+                document.getElementById('handLuggage').innerText = "7 كيلو جرام (شنطة ظهر/مقصورة)";
+                document.getElementById('checkedLuggage').innerText = "20 كيلو جرام (متاح لدرجة صعد أو مدفوع مسبقاً)";
+            } else {
+                document.getElementById('handLuggage').innerText = "7 كيلو جرام (أبعاد 56x36x23 سم)";
+                document.getElementById('checkedLuggage').innerText = "20 كيلو جرام أو 30 كيلو جرام (حسب باقة الحجز المختارة)";
+            }
+        }
+
+        // ميزة 5: منبه الأسعار التفاعلي
+        function activatePriceAlert() {
+            const email = document.getElementById('alertEmail').value;
+            if(!email || !email.includes('@')) {
+                alert("برجاء إدخال بريد إلكتروني صحيح يا معلم!");
+                return;
+            }
+            alert(`🚀 تم تفعيل منبه الأسعار التلقائي لبريدك (${email}) بنجاح! سنرسل لك إشعاراً فور هبوط الأسعار.`);
         }
 
         function setTripType(type) {
@@ -630,6 +808,7 @@
             }
             toSelect.style.boxShadow = "0 0 12px #2563eb";
             setTimeout(() => { toSelect.style.boxShadow = ""; }, 400);
+            triggerDynamicAdvice();
         }
 
         function updatePassengers(amount) {
@@ -651,7 +830,6 @@
                 return;
             }
 
-            // توليد الروابط الذكية ممرر بها كافة البيانات
             const adealDeepLink = `https://www.flyadeal.com/ar/booking/select?origin=${from}&destination=${to}&departureDate=${depDate}&adt=${passengerAmount}&chd=0&inf=0&utm_source=qaren`;
             const nasDeepLink = `https://www.flynas.com/ar/booking/flight-search?origin=${from}&destination=${to}&departure=${depDate}&adults=${passengerAmount}&utm_source=qaren`;
 
@@ -661,25 +839,38 @@
             document.getElementById('adealDetails').innerText = `رحلة من (${from}) إلى (${to}) لعدد ${passengerAmount} مسافر(ين) بتاريخ ${depDate}`;
             document.getElementById('nasDetails').innerText = `طيران اقتصادي مباشر من (${from}) إلى (${to}) لعدد ${passengerAmount} مسافر(ين)`;
 
-            // حساب وعرض السعر الذكي للمطارات المختارة بناءً على طلبك
             const priceAdeal = calculateMockPrice(from, to, 'adeal');
             const priceNas = calculateMockPrice(from, to, 'nas');
             
             document.getElementById('adealPrice').innerText = `السعر التقريبي الكلي: ${priceAdeal} ريال سعودي`;
             document.getElementById('nasPrice').innerText = `السعر التقريبي الكلي: ${priceNas} ريال سعودي`;
 
+            // ميزة 3: تحديث روابط الواتساب ديناميكياً ببيانات الحجز الحالية
+            const msgAdeal = encodeURIComponent(`يا غالي لقيت عرض رحلة على موقع "قارن | Qaren" على طيران أديل من مطار ${from} إلى ${to} لعدد ${passengerAmount} ركاب بسعر تقريبي ${priceAdeal} ريال!`);
+            const msgNas = encodeURIComponent(`يا غالي لقيت عرض على طيران ناس بموقع "قارن | Qaren" من مطار ${from} إلى ${to} بسعر إجمالي ${priceNas} ريال سعودي.`);
+            
+            document.getElementById('adealWA').href = `https://api.whatsapp.com/send?text=${msgAdeal}`;
+            document.getElementById('nasWA').href = `https://api.whatsapp.com/send?text=${msgNas}`;
+
+            // ميزة 4: معالم وأكلات ترفيهية محلية سريعة
+            const guideBlock = document.getElementById('localGuideBlock');
+            guideBlock.style.display = 'block';
+            if (to === 'JED') {
+                document.getElementById('guideText').innerText = "عند وصولك لجدة، لا تفوت زيارة كورنيش جدة والنافورة الشهيرة وتجربة طعام (البيك Al Baik) القريب جداً من صالات المطار للتوفير السريع، أو زيارة منطقة جدة التاريخية (البلد).";
+            } else if (to === 'RUH') {
+                document.getElementById('guideText').innerText = "في الرياض، ننصح بزيارة برج المملكة وبوليفارد سيتي الفخم، وتذوق الكبسة السعودية التقليدية في المطاعم التراثية الممتازة بالمنطقة.";
+            } else if (to === 'CAI') {
+                document.getElementById('guideText').innerText = "أهلاً بك في القاهرة! معالمك الأساسية القريبة هي أهرامات الجيزة ومتحف الحضارة. الأكلة الرسمية المفضلة هنا هي الكشري المصري الأصيل، أو الفول والفلافل الساخنة.";
+            } else {
+                document.getElementById('guideText').innerText = "وجهة ممتازة ومريحة! ننصحك دائماً بالتحقق من وسائل المواصلات المعتمدة عبر تطبيقات النقل السريعة فور خروجك من صالة المطار.";
+            }
+
             const hotelCard = document.getElementById('hotelCardResult');
             if(hotelVal !== "none") {
                 let hotelSearchUrl = "https://www.google.com/travel/search";
-                if(hotelVal === "Makkah-Clock-Tower") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%81%D9%86%D8%AF%D9%82+%D8%B3%D8%A7%D8%B9%D9%87+%D9%85%D9%83%D9%87";
-                else if(hotelVal === "Anwar-Al-Madinah") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%81%D9%86%D8%AF%D9%82+%D8%A3%D9%86%D9%88%D8%A7%D8%B1+%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9";
-                else if(hotelVal === "Nujuma-Ritz-Carlton") hotelSearchUrl = "https://www.google.com/travel/search?q=Nujuma+Ritz+Carlton";
-                else if(hotelVal === "Radisson-Blu-Khobar") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%85%D9%86%D8%AA%D8%AC%D8%B9+%D8%B1%D8%A7%D8%AF%D9%8A%D8%B3%D9%88%D9%86+%D8%A8%D9%84%D9%88+%D8%A7%D9%84%D8%AE%D8%A8%D8%B1";
-                else if(hotelVal === "Nofa-Resort-Riyadh") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%85%D9%86%D8%AA%D8%AC%D8%B9+%D9%86%D9%88%D9%81%D8%A7+%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6";
-                else if(hotelVal === "Rixos-Premium-Alamein") hotelSearchUrl = "https://www.google.com/travel/search?q=Rixos+Premium+Alamein";
-                else if(hotelVal === "Rixos-Sharm-El-Sheikh") hotelSearchUrl = "https://www.google.com/travel/search?q=Rixos+Sharm+El+Sheikh";
-                else if(hotelVal === "Four-Seasons-Alexandria") hotelSearchUrl = "https://www.google.com/travel/search?q=Four+Seasons+Alexandria";
-
+                if(hotelVal === "Makkah-Clock-Tower") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%81%D9%86%D8%AF%D9%82+%D8%B3%D8%A7%D8%B9%D9%87+%D9%8منه";
+                else if(hotelVal === "Anwar-Al-Madinah") hotelSearchUrl = "https://www.google.com/travel/search?q=%D9%81%D9%86%D8%AF%D9%82+%D8%A3%D9%86%D9%88%D8%A7%D8%B1+%D8%A7%D1%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9";
+                
                 document.getElementById('chosenHotelTitle').innerText = hotelText;
                 document.getElementById('hotelLinkUrl').href = hotelSearchUrl;
                 hotelCard.style.display = 'flex';
@@ -692,349 +883,4 @@
         }
     </script>
 </body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة قارن | الساعات المتحركة والذكر التلقائي</title>
-    <style>
-        :root {
-            --bg-color: #0b1329;
-            --text-color: #f8fafc;
-            --accent-gold: #d4af37;
-            --primary-green: #039855;
-            --card-bg: #1c2541;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        header {
-            text-align: center;
-            padding: 30px 20px;
-            width: 100%;
-            background: linear-gradient(135deg, #1c2541, #0b1329);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-bottom: 2px solid var(--accent-gold);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            color: var(--accent-gold);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        header p {
-            margin: 5px 0 0 0;
-            font-size: 14px;
-            color: #94a3b8;
-        }
-
-        .clocks-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            margin: 40px auto;
-            max-width: 1200px;
-            padding: 0 20px;
-        }
-
-        .clock-card {
-            background-color: var(--card-bg);
-            border: 2px solid #3a506b;
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            width: 260px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            position: relative;
-        }
-
-        .clock-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-gold);
-        }
-
-        .clock-card h3 {
-            margin: 0 0 15px 0;
-            font-size: 20px;
-            color: var(--text-color);
-        }
-
-        /* تصميم الساعة الأنالوج */
-        .analog-clock {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: #0b1329;
-            border: 6px solid var(--accent-gold);
-            position: relative;
-            margin: 0 auto 20px auto;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        /* تخصيصات إضافية لساعة مكة الفاخرة */
-        .makkah-style {
-            border-color: var(--accent-gold);
-            box-shadow: inset 0 0 25px rgba(212, 175, 55, 0.2), 0 4px 10px rgba(0,0,0,0.5);
-        }
-        
-        /* ساعة المدينة الخضراء المهيبة */
-        .madinah-style {
-            border-color: #10b981;
-            box-shadow: inset 0 0 25px rgba(16, 185, 129, 0.2), 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .analog-clock .center-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--text-color);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-        }
-
-        .analog-clock .hand {
-            position: absolute;
-            bottom: 50%;
-            left: 50%;
-            transform-origin: bottom center;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            z-index: 5;
-        }
-
-        .analog-clock .hour-hand {
-            width: 6px;
-            height: 50px;
-            background: var(--text-color);
-        }
-
-        .analog-clock .minute-hand {
-            width: 4px;
-            height: 70px;
-            background: #cbd5e1;
-        }
-
-        .analog-clock .second-hand {
-            width: 2px;
-            height: 75px;
-            background: #ef4444;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        /* أرقام أو علامات الساعة */
-        .analog-clock .number {
-            position: absolute;
-            font-size: 14px;
-            font-weight: bold;
-            color: #64748b;
-        }
-
-        .analog-clock .n12 { top: 5px; left: 50%; transform: translateX(-50%); color: var(--accent-gold); }
-        .analog-clock .n3 { right: 10px; top: 50%; transform: translateY(-50%); }
-        .analog-clock .n6 { bottom: 5px; left: 50%; transform: translateX(-50%); }
-        .analog-clock .n9 { left: 10px; top: 50%; transform: translateY(-50%); }
-
-        .digital-time {
-            font-size: 22px;
-            font-weight: bold;
-            font-family: monospace;
-            color: var(--accent-gold);
-            background: #0b1329;
-            padding: 8px 15px;
-            border-radius: 8px;
-            display: inline-block;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
-        }
-        
-        .madinah-text {
-            color: #10b981 !important;
-        }
-
-        /* لافتة التذكير بـ "صلى على النبي" المنبثقة التلقائية */
-        .dhikr-banner {
-            position: fixed;
-            bottom: -150px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #039855, #027a44);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 50px;
-            font-size: 24px;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(3, 152, 85, 0.5);
-            border: 3px solid var(--accent-gold);
-            text-align: center;
-            z-index: 10000;
-            transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .dhikr-banner.show {
-            bottom: 40px;
-        }
-
-        .dhikr-banner .icon {
-            font-size: 30px;
-            animation: pulse 1s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>منصة قارن | التوقيتات الحية والذكر المبارك</h1>
-        <p>رسوم متحركة متزامنة ليوم بيوم لعام 2026 مع تذكير آلي بالصلاة على النبي</p>
-    </header>
-
-    <div class="clocks-container">
-        <!-- ساعة مكة المكرمة -->
-        <div class="clock-card">
-            <h3>🕋 ساعة مكة المكرمة</h3>
-            <div class="analog-clock makkah-style" id="makkahAnalog">
-                <div class="center-dot"></div>
-                <div class="hand hour-hand" id="makkahHour"></div>
-                <div class="hand minute-hand" id="makkahMin"></div>
-                <div class="hand second-hand" id="makkahSec"></div>
-                <div class="number n12">١٢</div>
-                <div class="number n3">٣</div>
-                <div class="number n6">٦</div>
-                <div class="number n9">٩</div>
-            </div>
-            <div class="digital-time" id="makkahDigital">00:00:00</div>
-        </div>
-
-        <!-- ساعة المدينة المنورة -->
-        <div class="clock-card">
-            <h3 style="color: #10b981;">🟢 ساعة المدينة المنورة</h3>
-            <div class="analog-clock madinah-style" id="madinahAnalog">
-                <div class="center-dot"></div>
-                <div class="hand hour-hand" id="madinahHour"></div>
-                <div class="hand minute-hand" id="madinahMin"></div>
-                <div class="hand second-hand" id="madinahSec"></div>
-                <div class="number n12">١٢</div>
-                <div class="number n3">٣</div>
-                <div class="number n6">٦</div>
-                <div class="number n9">٩</div>
-            </div>
-            <div class="digital-time madinah-text" id="madinahDigital">00:00:00</div>
-        </div>
-
-        <!-- ساعة مصر -->
-        <div class="clock-card">
-            <h3 style="color: #3b82f6;">🇪🇬 ساعة جمهورية مصر</h3>
-            <div class="analog-clock" id="egyptAnalog" style="border-color: #3b82f6;">
-                <div class="center-dot"></div>
-                <div class="hand hour-hand" id="egyptHour"></div>
-                <div class="hand minute-hand" id="egyptMin"></div>
-                <div class="hand second-hand" id="egyptSec"></div>
-                <div class="number n12">١٢</div>
-                <div class="number n3">٣</div>
-                <div class="number n6">٦</div>
-                <div class="number n9">٩</div>
-            </div>
-            <div class="digital-time" id="egyptDigital" style="color: #3b82f6;">00:00:00</div>
-        </div>
-    </div>
-
-    <!-- نافذة الذكر الآلي المضيئة -->
-    <div class="dhikr-banner" id="dhikrBanner">
-        <span class="icon">✨</span>
-        <span>صَلِّى عَلَى النَّبِيِّ ﷺ</span>
-        <span class="icon">✨</span>
-    </div>
-
-    <script>
-        // دالة تشغيل وتحديث حركات الساعات والتروس المتزامنة تلقائياً
-        function updateAllClocks() {
-            // الحصول على التوقيت الحالي للكمبيوتر والجهاز
-            const now = new Date();
-            
-            // حساب الساعات بالاعتماد على الفروق الزمنية القياسية (مصر والسعودية حالياً في نفس التوقيت UTC+3 لعدم تطبيق التوقيت الصيفي بمصر في الشتاء أو للتزامن التام)
-            // لحساب فروق حقيقية نستخدم أوقات الـ UTC
-            const utcHours = now.getUTCHours();
-            const utcMinutes = now.getUTCMinutes();
-            const utcSeconds = now.getUTCSeconds();
-
-            // توقيت السعودية (مكة والمدينة) = UTC + 3
-            let saudiHour = (utcHours + 3) % 12;
-            // توقيت مصر = UTC + 3 (بناء على التوقيت المعتمد حالياً لعام 2026)
-            let egyptHour = (utcHours + 3) % 12;
-
-            // حساب درجات الدوران لعقارب الساعة الأنالوج بالرسوم المتحركة
-            const secondsDeg = (utcSeconds / 60) * 360;
-            const minutesDeg = ((utcMinutes * 60 + utcSeconds) / 3600) * 360;
-            
-            const makkahHoursDeg = ((saudiHour * 3600 + utcMinutes * 60 + utcSeconds) / 43200) * 360;
-            const madinahHoursDeg = ((saudiHour * 3600 + utcMinutes * 60 + utcSeconds) / 43200) * 360;
-            const egyptHoursDeg = ((egyptHour * 3600 + utcMinutes * 60 + utcSeconds) / 43200) * 360;
-
-            // تحريك العقارب في صفحة الـ HTML
-            document.getElementById('makkahSec').style.transform = `rotate(${secondsDeg}deg)`;
-            document.getElementById('makkahMin').style.transform = `rotate(${minutesDeg}deg)`;
-            document.getElementById('makkahHour').style.transform = `rotate(${makkahHoursDeg}deg)`;
-
-            document.getElementById('madinahSec').style.transform = `rotate(${secondsDeg}deg)`;
-            document.getElementById('madinahMin').style.transform = `rotate(${minutesDeg}deg)`;
-            document.getElementById('madinahHour').style.transform = `rotate(${madinahHoursDeg}deg)`;
-
-            document.getElementById('egyptSec').style.transform = `rotate(${secondsDeg}deg)`;
-            document.getElementById('egyptMin').style.transform = `rotate(${minutesDeg}deg)`;
-            document.getElementById('egyptHour').style.transform = `rotate(${egyptHoursDeg}deg)`;
-
-            // تحديث الساعات الديجيتال بالأسفل رقمياً
-            const formatTime = (h, m, s) => {
-                let hh = (h + 3) % 24; // نظام 24 ساعة للعرض الديجيتال
-                return `${hh < 10 ? '0'+hh : hh}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
-            };
-
-            document.getElementById('makkahDigital').innerText = formatTime(utcHours, utcMinutes, utcSeconds);
-            document.getElementById('madinahDigital').innerText = formatTime(utcHours, utcMinutes, utcSeconds);
-            document.getElementById('egyptDigital').innerText = formatTime(utcHours, utcMinutes, utcSeconds);
-        }
-
-        // تشغيل عداد الساعات في الخلفية ليتحدث كل ثانية واحدة بدقة
-        setInterval(updateAllClocks, 1000);
-        updateAllClocks(); // تشغيل فوري أول ما الصفحة تفتح
-
-        // كود تشغيل لافتة التذكير "صلى على النبي" لتظهر كل 30 ثانية وتختفي بعد 5 ثواني
-        setInterval(function() {
-            const banner = document.getElementById('dhikrBanner');
-            banner.classList.add('show'); // إظهار
-
-            // إخفاء اللافثة تلقائياً بعد 5 ثواني من ظهورها المضيء
-            setTimeout(function() {
-                banner.classList.remove('show');
-            }, 5000);
-
-        }, 30000); // 30000 مللي ثانية تعادل 30 ثانية بالتمام والكمال
-    </script>
-</body>
+    </html>
