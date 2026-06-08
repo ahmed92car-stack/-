@@ -13,6 +13,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قارن | الساعات التناظرية الثلاث الحية</title>
     <style>
+            body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+
+    .background-container {
+        background-image: url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+
+        height: 100vh;
+        width: 100%;
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    /* طبقة التظليل */
+    .background-container::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 43, 92, 0.55);
+        z-index: 1;
+    }
+
+    /* المحتوى فوق التظليل */
+    .content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="background-container">
+    <div class="content">
+        <h1>مرحباً بك في موقع السفر</h1>
+        <p>احجز رحلتك بأفضل الأسعار</p>
+    </div>
+</div>
+
+</body>
+</html>
         :root {
             --bg-canvas: #090d16;
             --text-gold: #d4af37;
