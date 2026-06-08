@@ -77,47 +77,41 @@
 </html> 
     </header>
 
-    <div class="clocks-wrapper">
-        <!-- ساعة مكة المكرمة -->
-        <div class="clock-container">
-            <h2 style="color: var(--text-gold);">🕋 ساعة مكة المكرمة</h2>
-            <div class="base-clock makkah-clock-face">
-                <div class="makkah-center"></div>
-                <div class="hand-axis" id="axisMakkahHr"><div class="pointer makkah-hour"></div></div>
-                <div class="hand-axis" id="axisMakkahMin"><div class="pointer makkah-min"></div></div>
-                <div class="hand-axis" id="axisMakkahSec"><div class="pointer makkah-sec"></div></div>
-                <!-- أرقام الساعة -->
-                <div class="makkah-num mk-12">١٢</div>
-                <div class="makkah-num mk-3">٣</div>
-                <div class="makkah-num mk-6">٦</div>
-                <div class="makkah-num mk-9">٩</div>
-            </div>
-        </div>
+<div class="clocks-container">
+    <div class="clock-box">
+        <h3>مكة المكرمة</h3>
+        <div class="clock" id="makkah"></div>
+    </div>
+    <div class="clock-box">
+        <h3>المدينة المنورة</h3>
+        <div class="clock" id="madinah"></div>
+    </div>
+    <div class="clock-box">
+        <h3>القاهرة</h3>
+        <div class="clock" id="cairo"></div>
+    </div>
+</div>
 
-        <!-- ساعة المدينة المنورة -->
-        <div class="clock-container">
-            <h2 style="color: var(--text-green);">🟢 ساعة المدينة النبوية</h2>
-            <div class="base-clock madinah-clock-face">
-                <div class="madinah-center"></div>
-                <div class="hand-axis" id="axisMadinahHr"><div class="pointer madinah-hour"></div></div>
-                <div class="hand-axis" id="axisMadinahMin"><div class="pointer madinah-min"></div></div>
-                <div class="hand-axis" id="axisMadinahSec"><div class="pointer madinah-sec"></div></div>
-                <!-- أرقام الساعة العربية المودرن -->
-                <div class="madinah-num md-12">12</div>
-                <div class="madinah-num md-3">3</div>
-                <div class="madinah-num md-6">6</div>
-                <div class="madinah-num md-9">9</div>
-            </div>
-        </div>
+<style>
+    .clocks-container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; z-index: 2; position: relative; }
+    .clock-box { background: rgba(255,255,255,0.9); padding: 15px; border-radius: 15px; text-align: center; color: #002b5c; font-weight: bold; }
+    .clock { font-size: 24px; font-family: monospace; }
+</style>
 
-        <!-- ساعة جمهورية مصر العربية -->
-        <div class="clock-container">
-            <h2 style="color: #38bdf8;">🇪🇬 جمهورية مصر العربية</h2>
-            <div class="base-clock egypt-clock-face">
-                <div class="egypt-center"></div>
-                <div class="hand-axis" id="axisEgyptHr"><div class="pointer egypt-hour"></div></div>
-                <div class="hand-axis" id="axisEgyptMin"><div class="pointer egypt-min"></div></div>
-                <div class="hand-axis" id="axisEgyptSec"><div class="pointer egypt-sec"></div></div>
+<script>
+    function updateClocks() {
+        // مكة والمدينة نفس التوقيت (GMT+3)
+        const timeKSA = new Date().toLocaleTimeString("ar-SA", { timeZone: "Asia/Riyadh" });
+        const timeCairo = new Date().toLocaleTimeString("ar-SA", { timeZone: "Africa/Cairo" });
+
+        document.getElementById("makkah").innerText = timeKSA;
+        document.getElementById("madinah").innerText = timeKSA;
+        document.getElementById("cairo").innerText = timeCairo;
+    }
+    // تحديث الساعة كل ثانية
+    setInterval(updateClocks, 1000);
+    updateClocks();
+</script>
                 <!-- علامات مؤشرات بدون أرقام لتميز الشكل -->
                 <div class="egypt-ticks eg-t12"></div>
                 <div class="egypt-ticks eg-t3"></div>
