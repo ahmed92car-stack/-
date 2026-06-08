@@ -854,32 +854,74 @@
                 <div class="form-group">
                     <label>من أين تسافر؟ (مدينة المغادرة)</label>
                     <select id="fromCity">
-                        <optgroup label="جمهورية مصر العربية">
-                            <option value="CAI" selected>القاهرة - مطار القاهرة الدولي (CAI)</option>
-                            <option value="HBE">الإسكندرية - مطار برج العرب الدولي (HBE)</option>
-                            <option value="SSH">شرم الشيخ - مطار شرم الشيخ الدولي (SSH)</option>
-                            <option value="HRG">الغردقة - مطار الغردقة الدولي (HRG)</option>
-                        </optgroup>
-                        <optgroup label="المملكة العربية السعودية">
-                            <option value="RUH">الرياض - مطار الملك خالد الدولي (RUH)</option>
-                            <option value="JED">جدة - مطار الملك عبدالعزيز الدولي (JED)</option>
-                            <option value="DMM">الدمام - مطار الملك فهد الدولي (DMM)</option>
-                        </optgroup>
+                        <optgroup label="جمهورية مصر العربية (مطارات الحجز المباشر)">
+    <option value="CAI">القاهرة الدولي (CAI) - الرئيسي</option>
+    <option value="HBE">برج العرب - الإسكندرية (HBE)</option>
+    <option value="SPX">سفنكس الدولي - الجيزة (SPX)</option>
+    <option value="SSH">شرم الشيخ الدولي (SSH)</option>
+    <option value="HRG">الغردقة الدولي (HRG)</option>
+    <option value="LXR">الأقصر الدولي (LXR)</option>
+    <option value="ASW">أسوان الدولي (ASW)</option>
+    <option value="ATZ">أسيوط الدولي (ATZ)</option>
+    <option value="RMF">مرسى علم الدولي (RMF)</option>
+    <option value="SOH">سوهاج الدولي (SOH)</option>
+</optgroup>
+<optgroup label="المملكة العربية السعودية (مطارات الحجز المباشر)">
+    <option value="JED">الملك عبد العزيز - جدة (JED)</option>
+    <option value="RUH">الملك خالد - الرياض (RUH)</option>
+    <option value="DMM">الملك فهد - الدمام (DMM)</option>
+    <option value="MED">الأمير محمد بن عبد العزيز - المدينة المنورة (MED)</option>
+    <option value="AHB">أبها الدولي (AHB)</option>
+    <option value="TYF">الطائف الدولي (TYF)</option>
+    <option value="GWE">القريات المحلي (GWE)</option>
+    <option value="TUI">توقيت ت things - تبوك (TUU)</option>
+    <option value="ELQ">الأمير نايف - القصيم (ELQ)</option>
+    <option value="HME">حائل الدولي (HAS)</option>
+    <option value="GIZ">الملك عبد الله - جيزان (GIZ)</option>
+    <option value="EAM">نجران المحلي (EAM)</option>
+    <option value="AJF">الجوف المحلي (AJF)</option>
+    <option value="RAE">عرعر المحلي (RAE)</option>
+    <option value="YNB">ينبع الصناعي (YNB)</option>
+    <option value="ULH">العلا الدولي (ULH)</option>
+</optgroup>
+
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>الوجهة (إلى)</label>
                     <select id="toCity" onchange="triggerDynamicAdvice()">
-                        <optgroup label="المملكة العربية السعودية">
-                            <option value="JED" selected>جدة - مطار الملك عبدالعزيز الدولي (JED)</option>
-                            <option value="RUH">الرياض - مطار الملك خالد الدولي (RUH)</option>
-                            <option value="DMM">الدمام - مطار الملك فهد الدولي (DMM)</option>
-                            <option value="MED">المدينة المنورة - مطار الأمير محمد بن عبدالعزيز (MED)</option>
-                        </optgroup>
-                        <optgroup label="جمهورية مصر العربية">
-                            <option value="CAI">القاهرة - مطار القاهرة الدولي (CAI)</option>
-                            <option value="HBE">الإسكندرية - مطار برج العرب الدولي (HBE)</option>
+                        <optgroup label="جمهورية مصر العربية (مطارات الحجز المباشر)">
+    <option value="CAI">القاهرة الدولي (CAI) - الرئيسي</option>
+    <option value="HBE">برج العرب - الإسكندرية (HBE)</option>
+    <option value="SPX">سفنكس الدولي - الجيزة (SPX)</option>
+    <option value="SSH">شرم الشيخ الدولي (SSH)</option>
+    <option value="HRG">الغردقة الدولي (HRG)</option>
+    <option value="LXR">الأقصر الدولي (LXR)</option>
+    <option value="ASW">أسوان الدولي (ASW)</option>
+    <option value="ATZ">أسيوط الدولي (ATZ)</option>
+    <option value="RMF">مرسى علم الدولي (RMF)</option>
+    <option value="SOH">سوهاج الدولي (SOH)</option>
+</optgroup>
+<optgroup label="المملكة العربية السعودية (مطارات الحجز المباشر)">
+    <option value="JED">الملك عبد العزيز - جدة (JED)</option>
+    <option value="RUH">الملك خالد - الرياض (RUH)</option>
+    <option value="DMM">الملك فهد - الدمام (DMM)</option>
+    <option value="MED">الأمير محمد بن عبد العزيز - المدينة المنورة (MED)</option>
+    <option value="AHB">أبها الدولي (AHB)</option>
+    <option value="TYF">الطائف الدولي (TYF)</option>
+    <option value="GWE">القريات المحلي (GWE)</option>
+    <option value="TUI">توقيت ت things - تبوك (TUU)</option>
+    <option value="ELQ">الأمير نايف - القصيم (ELQ)</option>
+    <option value="HME">حائل الدولي (HAS)</option>
+    <option value="GIZ">الملك عبد الله - جيزان (GIZ)</option>
+    <option value="EAM">نجران المحلي (EAM)</option>
+    <option value="AJF">الجوف المحلي (AJF)</option>
+    <option value="RAE">عرعر المحلي (RAE)</option>
+    <option value="YNB">ينبع الصناعي (YNB)</option>
+    <option value="ULH">العلا الدولي (ULH)</option>
+</optgroup>
+
                         </optgroup>
                     </select>
                 </div>
@@ -913,16 +955,36 @@
                 </div>
 
                 <div class="form-group">
-                    <label>عدد المسافرين</label>
-                    <div class="passenger-container">
-                        <div class="passenger-label">بالغ (12+ سنة)</div>
-                        <div class="counter-controls">
-                            <span class="btn-counter" onclick="updatePassengers(-1)">-</span>
-                            <span class="counter-value" id="passengerCount">1</span>
-                            <span class="btn-counter" onclick="updatePassengers(1)">+</span>
-                        </div>
-                    </div>
-                </div>
+                    <div class="force-side-by-side">
+    <div class="form-group">
+        <label>بالغين (+12 سنة)</label>
+        <select id="passengersAdult">
+            <option value="1" selected>1 مسافر</option>
+            <option value="2">2 مسافرين</option>
+            <option value="3">3 مسافرين</option>
+            <option value="4">4 مسافرين</option>
+            <option value="5">5 مسافرين</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>أطفال (2 - 12 سنة)</label>
+        <select id="passengersChild">
+            <option value="0" selected>لا يوجد</option>
+            <option value="1">1 طفل</option>
+            <option value="2">2 أطفال</option>
+            <option value="3">3 أطفال</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>رضّع (تحت سنتين)</label>
+        <select id="passengersInfant">
+            <option value="0" selected>لا يوجد</option>
+            <option value="1">1 رضيع</option>
+            <option value="2">2 رضع</option>
+        </select>
+    </div>
+</div>
+                    
 
                 <button type="button" class="btn-search" onclick="executeQarenMegaSearch()">ابحث وقارن الأسعار 🔍</button>
             </div>
