@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
   (function () {
       var script = document.createElement("script");
@@ -39,6 +40,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قارن | الساعات التناظرية الثلاث الحية</title>
     <style>
+        /* 1. استدعاء خط القاهرة الاحترافي من جوجل للغة العربية */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+
+/* 2. تظبط الخط الافتراضي للموقع بالكامل */
+html {
+    font-size: 16px; /* الحجم الأساسي اللي بيبني عليه الموبايل أبعاده */
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    -webkit-font-smoothing: antialiased; /* تنعيم حواف الخط على أجهزة الآيفون والموبايلات */
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility; /* تحسين قراءة الحروف العربية المتشابكة */
+}
+
+/* 3. تظبط أحجام العناوين والنصوص لتكون متناسقة على التليفون */
+h1 {
+    font-size: 2.2rem; /* حجم مناسب لعنوان الانترو أو الشاشة الرئيسية */
+    font-weight: 900;  /* خط عريض جداً وواضح */
+    line-height: 1.4;  /* مسافة مريحة بين السطور */
+}
+
+p {
+    font-size: 1rem;   /* حجم خط النصوص العادية والشرح */
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* 4. كود التجاوب الخاص بالموبايلات (Media Query) */
+/* الكود ده بيشتغل تلقائياً أول ما الموقع يفتح من شاشة تليفون أصغر من 768 بكسل */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px; /* بنصغر الحجم الأساسي سنة عشان الكلام ما يخرجش بره الشاشة في الموبايلات الصغيرة */
+    }
+    
+    h1 {
+        font-size: 1.8rem; /* تصغير العناوين الكبيرة على الموبايل عشان تظهر في سطرين بالكتير */
+    }
+    
+    .brand-3d {
+        font-size: 2.5rem !important; /* لو بتعدل على اسم Qaran Travel في الانترو، ده بيصغره على قد شاشة الموبايل */
+        letter-spacing: 2px !important;
+    }
+}
             body, html {
                 https://klook.tpx.lv/RVSiw23D
         margin: 0;
@@ -90,7 +135,7 @@
     }
 </style>
 </head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
 <div id="intro-splash">
     <div class="scene3d">
