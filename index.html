@@ -7,7 +7,31 @@
       script.async = 1;
       script.src = 'https://emrld.ltd/NTM3NTQw.js?t=537540';
       document.head.appendChild(script);
-  })();
+  })(
+      <script type="text/javascript">
+    // تهيئة أداة جوجل في الخلفية
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'ar',
+            includedLanguages: 'ar,en',
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+
+    // الدالة الذكية لتحويل اللغة عند الضغط على أزرارك
+    function changeLanguage(langCode) {
+        const googleSelect = document.querySelector('#google_translate_element select');
+        if (googleSelect) {
+            googleSelect.value = langCode;
+            // إطلاق حدث التغيير لكي تشعر أداة جوجل بالضغط وتترجم فوراً
+            googleSelect.dispatchEvent(new Event('change'));
+        } else {
+            console.log("جاري تحميل أداة الترجمة، يرجى المحاولة مجدداً خلال ثانية.");
+        }
+    }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
