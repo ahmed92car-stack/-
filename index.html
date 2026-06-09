@@ -237,46 +237,7 @@
             console.log("جاري تحميل أداة الترجمة، يرجى المحاولة مجدداً خلال ثانية.");
         }
     }
-</script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        function runLiveAnalogClocks() {
-            const timeNow = new Date();
-            
-            // جلب التوقيت العالمي الموحد وحساب التوقيت المحلي بدقة
-            const globalUtcHours = timeNow.getUTCHours();
-            const globalUtcMinutes = timeNow.getUTCMinutes();
-            const globalUtcSeconds = timeNow.getUTCSeconds();
-
-            // توقيت السعودية (مكة والمدينة) ومصر حالياً يتطابقان في الشتاء UTC+3
-            const saudiHoursLocal = (globalUtcHours + 3) % 12;
-            const egyptHoursLocal = (globalUtcHours + 3) % 12;
-
-            // حساب درجات الدوران الدقيقة للعقارب بدقة انسيابية عالية
-            const rotationSeconds = (globalUtcSeconds / 60) * 360;
-            const rotationMinutes = ((globalUtcMinutes * 60 + globalUtcSeconds) / 3600) * 360;
-            
-            const degMakkahHr = ((saudiHoursLocal * 3600 + globalUtcMinutes * 60 + globalUtcSeconds) / 43200) * 360;
-            const degMadinahHr = ((saudiHoursLocal * 3600 + globalUtcMinutes * 60 + globalUtcSeconds) / 43200) * 360;
-            const degEgyptHr = ((egyptHoursLocal * 3600 + globalUtcMinutes * 60 + globalUtcSeconds) / 43200) * 360;
-
-            // تطبيق الحركات التناظرية عن طريق محاور الدوران في الـ CSS
-            document.getElementById('axisMakkahSec').style.transform = `rotate(${rotationSeconds}deg)`;
-            document.getElementById('axisMakkahMin').style.transform = `rotate(${rotationMinutes}deg)`;
-            document.getElementById('axisMakkahHr').style.transform = `rotate(${degMakkahHr}deg)`;
-
-            document.getElementById('axisMadinahSec').style.transform = `rotate(${rotationSeconds}deg)`;
-            document.getElementById('axisMadinahMin').style.transform = `rotate(${rotationMinutes}deg)`;
-            document.getElementById('axisMadinahHr').style.transform = `rotate(${degMadinahHr}deg)`;
-
-            document.getElementById('axisEgyptSec').style.transform = `rotate(${rotationSeconds}deg)`;
-            document.getElementById('axisEgyptMin').style.transform = `rotate(${rotationMinutes}deg)`;
-            document.getElementById('axisEgyptHr').style.transform = `rotate(${degEgyptHr}deg)`;
-        }
-
-        // تحديث مستمر كل ثانية لضمان دقة الرسوم التناظرية
-        setInterval(runLiveAnalogClocks, 1000);
-        runLiveAnalogClocks(); // استدعاء أولي فوري عند تحميل الصفحة
+    </script>
     </script>
 </body>
 </html> <!DOCTYPE html>
